@@ -5,7 +5,7 @@ require 'json'
 require 'haml'
 
 enable :sessions
-set :database, 'sqlite://tasks.db'
+set :database, 'postgres://localhost/tasks'
 set :root, File.dirname(__FILE__)
 set :views, Proc.new { File.join(root, "views") } 
 
@@ -16,7 +16,7 @@ migration "create tasks table" do
 		text        :name
 		date        :due
 		integer     :priority
-		slug        :assignee
+		text        :assignee
 		boolean     :completed
 		timestamp   :created
 	end
