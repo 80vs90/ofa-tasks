@@ -5,7 +5,14 @@ require 'json'
 require 'haml'
 
 enable :sessions
-set :database, 'postgres://localhost/tasks'
+
+configure :development do
+  set :database, 'postgres://localhost/tasks'
+end
+
+configure :production do
+  set :database, 'postgres://xzlkopwjschypj:fhC1x99ZGMOyOeiAEfLGasiS5V@ec2-54-204-42-178.compute-1.amazonaws.com:5432/d77gqvmavpeok1'
+end
 set :root, File.dirname(__FILE__)
 set :views, Proc.new { File.join(root, "views") } 
 
