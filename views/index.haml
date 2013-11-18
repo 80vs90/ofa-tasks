@@ -1,0 +1,67 @@
+!!!
+%html{ :lang => "en" }
+  %head
+    %title OFA Tasks
+    %meta{ "http-equiv" => "refresh", :content => "3600" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %link{ :href => "assets2/css/bootstrap.min.css", :rel => "stylesheet", :media => "screen" }
+    %link{ :href => "assets2/css/jquery-ui-1.10.0.custom.css", :rel => "stylesheet" }
+
+    %script{ :src => "http://code.jquery.com/jquery-1.9.1.min.js" }
+    %script{ :src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js" }
+
+    %style
+      \#assigned, #pool { list-style-type: none; width: 60%; min-height: 100px;}
+      \#assigned li, #pool li { margin: 5px; border-radius: 5px; font-size: 20px;}
+      \a.task {padding: 25px; max-width: 60%;}
+    %script{ :src => "assets2/js/ui_controller.js" }
+  %body
+    .container
+      .navbar
+        .navbar-inner
+          %a.brand{ :href => "#" } OFA Tasks
+          %ul.nav.pull-right
+            %li
+              %a{ :href => "#" }Nate Rubin
+            %li
+              %a{ :href => "/logout" } Logout
+      .row
+        .span6
+        .span3
+          %button#newtask{ :href => "#" }
+            %i.icon-large.icon-plus-sign
+            Add a task
+      .row
+        .span6
+          %h2 Assigned Tasks
+        .span6
+          %h2 Task Pool
+      .row
+        .span6
+          %ul#assigned.connectedSortable
+            - @assigned.each do |task|
+              %li.ui-state-default{ :id => "task_#{task.id}" }
+                %input.checker{ :type => "checkbox"}
+                %a.task{ :href => "#" }
+                  #{task[:name]}
+                  -if task.priority == 0
+                    %span.label.pull-right Normal
+                  -elsif task.priority == 1
+                    %span.label.label-success.pull-right Low
+                  -elsif task.priority == 2
+                    %span.label.label-important.pull-right High
+        .span6
+          %ul#pool.connectedSortable
+            - @pool.each do |task|
+              %li.ui-state-default{ :id => "task_#{task.id}"}
+                %a.task{ :href => "#" }
+                  #{task.name}
+                  -if task.priority == 0
+                    %span.label.pull-right Normal
+                  -elsif task.priority == 1
+                    %span.label.label-success.pull-right Low
+                  -elsif task.priority == 2
+                    %span.label.label-important.pull-right High
+    #task-dialog
+    #new-task-dialog

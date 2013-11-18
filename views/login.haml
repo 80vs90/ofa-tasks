@@ -1,0 +1,28 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %title OFA Tasks
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+
+    %link{:href => "assets2/css/bootstrap.min.css", :rel => "stylesheet", :media => "screen"}
+  %body
+    .container
+      .row{:style => "margin-top: 100px;"}
+        .span3.offset4
+          %h1 OFA Tasks
+      .row{ :style => "margin-top: 50px;" }
+        .span7.offset3
+          %form.form-horizontal{ :action => "/login", :method => "post" }
+            .control-group
+              %label.control-label{ :for => "inputUsername" } Username
+              .controls
+                %input{ :type => "text", :name => "username", :id => "inputUsername", :placeholder => "Username" }
+            .control-group
+              %label.control-label{ :for => "inputPassword" } Password
+              .controls
+                %input{ :type => "password", :name => "password", :id => "inputPassword", :placeholder => "Password" }
+            .control-group
+              .controls
+                %label.checkbox
+                  %input{ :type => "checkbox" } Remember me
+                %button{ :type => "submit", :class => "btn" } Sign in
