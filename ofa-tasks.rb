@@ -67,12 +67,6 @@ get '/logout' do
 	redirect '/'
 end
 
-get '/tasks' do
-	task = Task[1]
-
-	task.name
-end
-
 post '/createtask' do
 	task = Task.create(:name => params[:name], :due => params[:due], :priority => params[:priority], :assignee => params[:assignee], :description => params[:description], :completed => 0, :created => Time.now)
 
